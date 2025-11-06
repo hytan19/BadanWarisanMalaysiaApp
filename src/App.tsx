@@ -7,6 +7,7 @@ import { EventDetails } from './components/EventDetails';
 import { LeaderboardScreen } from './components/LeaderboardScreen';
 import { ProfileScreen } from './components/ProfileScreen';
 import { DonationHistory } from './components/DonationHistory';
+import { SettingsScreen } from './components/SettingsScreen';
 import { AIAssistant } from './components/AIAssistant';
 import { HeritagePassport } from './components/HeritagePassport';
 import { HeritageJournal } from './components/HeritageJournal';
@@ -42,7 +43,7 @@ export default function App() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-[#FEFDF5] min-h-screen">
+    <div className="max-w-md mx-auto bg-[#FFFBEA] min-h-screen">
       {currentScreen === 'home' && (
         <HomeScreen onNavigate={handleNavigate} activeTab={activeTab} />
       )}
@@ -93,9 +94,9 @@ export default function App() {
 
       {/* Placeholder screens for donate and settings */}
       {currentScreen === 'donate' && (
-        <div className="min-h-screen bg-[#FEFDF5] flex flex-col">
+        <div className="min-h-screen bg-[#FFFBEA] flex flex-col">
           <header className="bg-[#0A402F] px-4 py-4">
-            <h2 className="text-[#FEFDF5]">Donate</h2>
+            <h2 className="text-[#FFFBEA] font-['Lora']">Donate</h2>
           </header>
           <main className="flex-1 px-4 py-6 pb-24">
             <div className="bg-white rounded-2xl p-6 shadow-sm">
@@ -110,19 +111,7 @@ export default function App() {
       )}
 
       {currentScreen === 'settings' && (
-        <div className="min-h-screen bg-[#FEFDF5] flex flex-col">
-          <header className="bg-[#0A402F] px-4 py-4">
-            <h2 className="text-[#FEFDF5]">Settings</h2>
-          </header>
-          <main className="flex-1 px-4 py-6 pb-24">
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
-              <h3 className="text-[#333333] font-['Lora'] mb-3">App Settings</h3>
-              <p className="text-[#333333] opacity-70">
-                Customize your BWM app experience
-              </p>
-            </div>
-          </main>
-        </div>
+        <SettingsScreen onNavigate={handleNavigate} />
       )}
     </div>
   );

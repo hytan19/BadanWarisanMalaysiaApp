@@ -1,52 +1,42 @@
-import { ChevronRight, CreditCard, History, Calendar, Settings, LogOut, Award } from 'lucide-react';
+import { ChevronRight, CreditCard, History, Settings, LogOut, Bell, User as UserIcon, Home, DollarSign, Calendar, User } from 'lucide-react';
 
 interface ProfileScreenProps {
   onNavigate: (screen: string) => void;
 }
 
 const menuItems = [
-  { id: 'membership', icon: CreditCard, label: 'My Membership Card', screen: 'membership' },
-  { id: 'passport', icon: Award, label: 'Heritage Passport', screen: 'heritage-passport' },
   { id: 'donations', icon: History, label: 'Donation History', screen: 'donation-history' },
-  { id: 'events', icon: Calendar, label: 'My Journal', screen: 'my-events' },
+  { id: 'membership', icon: CreditCard, label: 'My Membership Card', screen: 'membership' },
+  { id: 'edit-profile', icon: UserIcon, label: 'Edit Profile', screen: 'settings' },
   { id: 'settings', icon: Settings, label: 'Settings', screen: 'settings' },
 ];
 
 export function ProfileScreen({ onNavigate }: ProfileScreenProps) {
   return (
-    <div className="min-h-screen bg-[#FEFDF5] flex flex-col">
-      {/* Header */}
-      <header className="bg-[#0A402F] px-4 py-4">
-        <h2 className="text-[#FEFDF5]">My Profile</h2>
+    <div className="min-h-screen bg-[#FFFBEA] flex flex-col">
+      {/* TOP-LEVEL: Main App Header (NO Back Button) */}
+      <header className="bg-[#0A402F] px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-[#FFFBEA] rounded-xl flex items-center justify-center">
+            <span className="text-[#0A402F] font-['Lora']">BWM</span>
+          </div>
+        </div>
+        <button className="text-[#FFFBEA]">
+          <Bell size={24} />
+        </button>
       </header>
 
       {/* Content */}
       <main className="flex-1 px-4 py-6 overflow-y-auto pb-24">
-        {/* Profile Card */}
+        {/* User Details */}
         <div className="bg-white rounded-2xl p-6 shadow-sm mb-6">
-          <div className="flex items-center mb-4">
-            <div className="w-16 h-16 bg-[#0A402F] rounded-full flex items-center justify-center mr-4">
-              <span className="text-[#FEFDF5] text-xl">C</span>
+          <div className="flex items-center gap-4">
+            <div className="w-16 h-16 bg-[#0A402F] rounded-full flex items-center justify-center">
+              <span className="text-[#FFFBEA] font-['Lora']">U</span>
             </div>
             <div>
-              <h3 className="text-[#333333] font-['Lora']">Chen</h3>
-              <p className="text-[#333333] opacity-70">chen@mail.com</p>
-            </div>
-          </div>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 mt-6 pt-4 border-t border-gray-200">
-            <div className="text-center">
-              <p className="text-[#0A402F]">RM2,500</p>
-              <p className="text-[#333333] opacity-70">Donated</p>
-            </div>
-            <div className="text-center">
-              <p className="text-[#0A402F]">20</p>
-              <p className="text-[#333333] opacity-70">Hours</p>
-            </div>
-            <div className="text-center">
-              <p className="text-[#0A402F]">8</p>
-              <p className="text-[#333333] opacity-70">Events</p>
+              <h3 className="text-[#333333] font-['Lora'] mb-1">User Name</h3>
+              <p className="text-[#333333] opacity-70">user@gmail.com</p>
             </div>
           </div>
         </div>
@@ -63,7 +53,7 @@ export function ProfileScreen({ onNavigate }: ProfileScreenProps) {
             >
               <div className="flex items-center gap-3">
                 <item.icon className="text-[#0A402F]" size={20} />
-                <span className="text-[#333333]">{item.label}</span>
+                <span className="text-[#333333] font-['Inter']">{item.label}</span>
               </div>
               <ChevronRight className="text-[#333333] opacity-50" size={20} />
             </button>
@@ -71,11 +61,51 @@ export function ProfileScreen({ onNavigate }: ProfileScreenProps) {
         </div>
 
         {/* Log Out Button */}
-        <button className="w-full flex items-center justify-center gap-3 bg-white rounded-2xl p-4 shadow-sm text-[#d4183d] hover:bg-[#d4183d]/5 transition-colors">
-          <LogOut size={20} />
-          <span>Log Out</span>
+        <button className="w-full flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm hover:bg-[#d4183d]/5 transition-colors">
+          <div className="flex items-center gap-3">
+            <LogOut className="text-[#d4183d]" size={20} />
+            <span className="text-[#d4183d] font-['Inter']">Log Out</span>
+          </div>
+          <ChevronRight className="text-[#d4183d] opacity-50" size={20} />
         </button>
       </main>
+
+      {/* TOP-LEVEL: Bottom Navigation Bar */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3">
+        <div className="flex justify-between items-center max-w-md mx-auto">
+          <button 
+            onClick={() => onNavigate('home')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <Home size={24} />
+            <span className="text-xs font-['Inter']">Home</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('donate')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <DollarSign size={24} />
+            <span className="text-xs font-['Inter']">Donate</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('events')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <Calendar size={24} />
+            <span className="text-xs font-['Inter']">Events</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('profile')}
+            className="flex flex-col items-center gap-1 text-[#0A402F]"
+          >
+            <User size={24} />
+            <span className="text-xs font-['Inter']">Profile</span>
+          </button>
+        </div>
+      </nav>
     </div>
   );
 }
