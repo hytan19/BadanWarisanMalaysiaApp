@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { useState } from 'react';
+import bwmLogo from 'figma:asset/0d1febf7746d940532ad6ebe58464b3c717cca4a.png';
 
 interface HomeScreenProps {
   onNavigate: (screen: string) => void;
@@ -75,9 +76,7 @@ export function HomeScreen({ onNavigate, activeTab }: HomeScreenProps) {
       {/* Header */}
       <header className="bg-[#0A402F] px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[#FEFDF5] rounded-lg flex items-center justify-center">
-            <span className="text-[#0A402F] font-['Lora']">BWM</span>
-          </div>
+          <img src={bwmLogo} alt="BWM Logo" className="w-10 h-10 rounded-xl" />
         </div>
         <button className="text-[#FEFDF5]">
           <Bell size={24} />
@@ -88,7 +87,7 @@ export function HomeScreen({ onNavigate, activeTab }: HomeScreenProps) {
       <main className="flex-1 px-4 pb-24 overflow-y-auto">
         {/* Welcome Text */}
         <div className="mt-6 mb-6">
-          <h1 className="text-[#333333] font-['Lora']">Hi Chen!</h1>
+          <h1 className="text-[#333333] font-['Lora']">Hi User!</h1>
           <p className="text-[#333333] opacity-70 mt-1">Welcome back to your heritage journey</p>
         </div>
 

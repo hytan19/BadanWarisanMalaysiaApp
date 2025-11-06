@@ -4,6 +4,7 @@ import { MembershipViewCard } from './components/MembershipViewCard';
 import { MembershipRegistration } from './components/MembershipRegistration';
 import { EventsList } from './components/EventsList';
 import { EventDetails } from './components/EventDetails';
+import { DonateScreen } from './components/DonateScreen';
 import { LeaderboardScreen } from './components/LeaderboardScreen';
 import { ProfileScreen } from './components/ProfileScreen';
 import { DonationHistory } from './components/DonationHistory';
@@ -94,20 +95,7 @@ export default function App() {
 
       {/* Placeholder screens for donate and settings */}
       {currentScreen === 'donate' && (
-        <div className="min-h-screen bg-[#FFFBEA] flex flex-col">
-          <header className="bg-[#0A402F] px-4 py-4">
-            <h2 className="text-[#FFFBEA] font-['Lora']">Donate</h2>
-          </header>
-          <main className="flex-1 px-4 py-6 pb-24">
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
-              <h3 className="text-[#333333] font-['Lora'] mb-3">Support Our Cause</h3>
-              <p className="text-[#333333] opacity-70">
-                Your donations help us preserve Malaysia's rich heritage for future generations.
-              </p>
-            </div>
-          </main>
-          <HomeScreen onNavigate={handleNavigate} activeTab={activeTab} />
-        </div>
+        <DonateScreen onNavigate={handleNavigate} />
       )}
 
       {currentScreen === 'settings' && (

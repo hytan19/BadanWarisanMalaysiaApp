@@ -1,4 +1,5 @@
 import { ChevronRight, CreditCard, History, Settings, LogOut, Bell, User as UserIcon, Home, DollarSign, Calendar, User } from 'lucide-react';
+import bwmLogo from 'figma:asset/0d1febf7746d940532ad6ebe58464b3c717cca4a.png';
 
 interface ProfileScreenProps {
   onNavigate: (screen: string) => void;
@@ -17,9 +18,7 @@ export function ProfileScreen({ onNavigate }: ProfileScreenProps) {
       {/* TOP-LEVEL: Main App Header (NO Back Button) */}
       <header className="bg-[#0A402F] px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[#FFFBEA] rounded-xl flex items-center justify-center">
-            <span className="text-[#0A402F] font-['Lora']">BWM</span>
-          </div>
+          <img src={bwmLogo} alt="BWM Logo" className="w-10 h-10 rounded-xl" />
         </div>
         <button className="text-[#FFFBEA]">
           <Bell size={24} />

@@ -1,6 +1,7 @@
-import { ArrowLeft, Calendar, MapPin } from 'lucide-react';
+import { Calendar, MapPin, Bell, Home, DollarSign, User } from 'lucide-react';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import bwmLogo from 'figma:asset/0d1febf7746d940532ad6ebe58464b3c717cca4a.png';
 
 interface EventsListProps {
   onNavigate: (screen: string) => void;
@@ -51,13 +52,16 @@ const events = [
 
 export function EventsList({ onNavigate }: EventsListProps) {
   return (
-    <div className="min-h-screen bg-[#FEFDF5] flex flex-col">
-      {/* Header */}
-      <header className="bg-[#0A402F] px-4 py-4 flex items-center">
-        <button onClick={() => onNavigate('home')} className="text-[#FEFDF5] mr-4">
-          <ArrowLeft size={24} />
+    <div className="min-h-screen bg-[#FFFBEA] flex flex-col">
+      {/* TOP-LEVEL: Main App Header */}
+      <header className="bg-[#0A402F] px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <img src={bwmLogo} alt="BWM Logo" className="w-10 h-10 rounded-xl" />
+          <h2 className="text-[#FFFBEA] font-['Lora']">Events</h2>
+        </div>
+        <button className="text-[#FFFBEA]">
+          <Bell size={24} />
         </button>
-        <h2 className="text-[#FEFDF5]">Events & Programmes</h2>
       </header>
 
       {/* Content */}
@@ -74,27 +78,27 @@ export function EventsList({ onNavigate }: EventsListProps) {
               <div className="p-4">
                 <h3 className="text-[#333333] font-['Lora'] mb-2">{event.title}</h3>
                 
-                <div className="flex items-center text-[#333333] opacity-70 mb-2">
+                <div className="flex items-center text-[#333333] opacity-70 mb-2 font-['Inter']">
                   <Calendar size={16} className="mr-2" />
                   <span>{event.date}</span>
                 </div>
                 
-                <div className="flex items-center text-[#333333] opacity-70 mb-3">
+                <div className="flex items-center text-[#333333] opacity-70 mb-3 font-['Inter']">
                   <MapPin size={16} className="mr-2" />
                   <span>{event.location}</span>
                 </div>
                 
-                <p className="text-[#333333] opacity-70 mb-4">{event.description}</p>
+                <p className="text-[#333333] opacity-70 mb-4 font-['Inter']">{event.description}</p>
                 
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-[#0A402F]">{event.fee}</span>
+                    <span className="text-[#0A402F] font-['Inter']">{event.fee}</span>
                     {event.memberFree && (
-                      <span className="text-[#B8860B] ml-2">Free for members</span>
+                      <span className="text-[#B48F5E] ml-2 font-['Inter']">Free for members</span>
                     )}
                   </div>
                   <Button 
-                    className="bg-[#0A402F] hover:bg-[#0A402F]/90 text-[#FEFDF5] rounded-lg"
+                    className="bg-[#0A402F] hover:bg-[#0A402F]/90 text-[#FFFBEA] rounded-xl font-['Inter']"
                     onClick={() => onNavigate('event-details')}
                   >
                     Book Now
@@ -105,6 +109,43 @@ export function EventsList({ onNavigate }: EventsListProps) {
           ))}
         </div>
       </main>
+
+      {/* TOP-LEVEL: Bottom Navigation Bar */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3">
+        <div className="flex justify-between items-center max-w-md mx-auto">
+          <button 
+            onClick={() => onNavigate('home')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <Home size={24} />
+            <span className="text-xs font-['Inter']">Home</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('donate')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <DollarSign size={24} />
+            <span className="text-xs font-['Inter']">Donate</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('events')}
+            className="flex flex-col items-center gap-1 text-[#0A402F]"
+          >
+            <Calendar size={24} />
+            <span className="text-xs font-['Inter']">Events</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('profile')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <User size={24} />
+            <span className="text-xs font-['Inter']">Profile</span>
+          </button>
+        </div>
+      </nav>
     </div>
   );
 }

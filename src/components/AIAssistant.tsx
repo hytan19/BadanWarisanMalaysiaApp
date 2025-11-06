@@ -1,7 +1,8 @@
-import { ArrowLeft, Send } from 'lucide-react';
+import { Send, Bell, Home, DollarSign, Calendar, User } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useState } from 'react';
+import bwmLogo from 'figma:asset/0d1febf7746d940532ad6ebe58464b3c717cca4a.png';
 
 interface AIAssistantProps {
   onNavigate: (screen: string) => void;
@@ -75,17 +76,20 @@ export function AIAssistant({ onNavigate }: AIAssistantProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FEFDF5] flex flex-col">
-      {/* Header */}
-      <header className="bg-[#0A402F] px-4 py-4 flex items-center">
-        <button onClick={() => onNavigate('home')} className="text-[#FEFDF5] mr-4">
-          <ArrowLeft size={24} />
+    <div className="min-h-screen bg-[#FFFBEA] flex flex-col">
+      {/* TOP-LEVEL: Main App Header */}
+      <header className="bg-[#0A402F] px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <img src={bwmLogo} alt="BWM Logo" className="w-10 h-10 rounded-xl" />
+          <h2 className="text-[#FFFBEA] font-['Lora']">BWM Assistant</h2>
+        </div>
+        <button className="text-[#FFFBEA]">
+          <Bell size={24} />
         </button>
-        <h2 className="text-[#FEFDF5]">BWM Assistant</h2>
       </header>
 
       {/* Chat Messages */}
-      <main className="flex-1 px-4 py-6 overflow-y-auto pb-32">
+      <main className="flex-1 px-4 py-6 overflow-y-auto pb-40">
         <div className="space-y-4">
           {messages.map((message) => (
             <div
@@ -95,19 +99,19 @@ export function AIAssistant({ onNavigate }: AIAssistantProps) {
               <div
                 className={`max-w-[80%] rounded-2xl p-4 ${
                   message.sender === 'user'
-                    ? 'bg-[#0A402F] text-[#FEFDF5]'
+                    ? 'bg-[#0A402F] text-[#FFFBEA]'
                     : 'bg-white text-[#333333] shadow-sm'
                 }`}
               >
                 {message.sender === 'ai' && (
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-6 h-6 bg-[#B8860B] rounded-full flex items-center justify-center">
-                      <span className="text-white text-xs">AI</span>
+                    <div className="w-6 h-6 bg-[#B48F5E] rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-['Inter']">AI</span>
                     </div>
-                    <span className="text-[#333333] opacity-70">BWM Assistant</span>
+                    <span className="text-[#333333] opacity-70 font-['Inter']">BWM Assistant</span>
                   </div>
                 )}
-                <p>{message.text}</p>
+                <p className="font-['Inter']">{message.text}</p>
               </div>
             </div>
           ))}
@@ -116,13 +120,13 @@ export function AIAssistant({ onNavigate }: AIAssistantProps) {
         {/* Suggested Prompts - Only show if there's just the welcome message */}
         {messages.length === 1 && (
           <div className="mt-6">
-            <p className="text-[#333333] opacity-70 mb-3">Suggested questions:</p>
+            <p className="text-[#333333] opacity-70 mb-3 font-['Inter']">Suggested questions:</p>
             <div className="flex flex-wrap gap-2">
               {suggestedPrompts.map((prompt, index) => (
                 <button
                   key={index}
                   onClick={() => handleSuggestedPrompt(prompt)}
-                  className="bg-white border-2 border-[#0A402F] text-[#0A402F] rounded-full px-4 py-2 hover:bg-[#0A402F]/5 transition-colors"
+                  className="bg-white border-2 border-[#0A402F] text-[#0A402F] rounded-full px-4 py-2 hover:bg-[#0A402F]/5 transition-colors font-['Inter']"
                 >
                   {prompt}
                 </button>
@@ -132,8 +136,45 @@ export function AIAssistant({ onNavigate }: AIAssistantProps) {
         )}
       </main>
 
-      {/* Input Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4">
+      {/* TOP-LEVEL: Bottom Navigation Bar (just above input) */}
+      <nav className="fixed bottom-20 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3 z-10">
+        <div className="flex justify-between items-center max-w-md mx-auto">
+          <button 
+            onClick={() => onNavigate('home')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <Home size={24} />
+            <span className="text-xs font-['Inter']">Home</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('donate')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <DollarSign size={24} />
+            <span className="text-xs font-['Inter']">Donate</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('events')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <Calendar size={24} />
+            <span className="text-xs font-['Inter']">Events</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('profile')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <User size={24} />
+            <span className="text-xs font-['Inter']">Profile</span>
+          </button>
+        </div>
+      </nav>
+
+      {/* Input Bar (at very bottom) */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4 z-20">
         <div className="max-w-md mx-auto flex gap-2">
           <Input
             value={inputText}
@@ -144,11 +185,11 @@ export function AIAssistant({ onNavigate }: AIAssistantProps) {
               }
             }}
             placeholder="Ask me anything about heritage..."
-            className="flex-1 bg-[#FEFDF5] border-gray-300 rounded-full"
+            className="flex-1 bg-[#FFFBEA] border-gray-300 rounded-full font-['Inter']"
           />
           <Button
             onClick={() => handleSend(inputText)}
-            className="bg-[#0A402F] hover:bg-[#0A402F]/90 text-[#FEFDF5] rounded-full w-12 h-12 p-0"
+            className="bg-[#0A402F] hover:bg-[#0A402F]/90 text-[#FFFBEA] rounded-full w-12 h-12 p-0"
           >
             <Send size={20} />
           </Button>
