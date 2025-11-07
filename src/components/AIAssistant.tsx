@@ -89,7 +89,7 @@ export function AIAssistant({ onNavigate }: AIAssistantProps) {
       </header>
 
       {/* Chat Messages */}
-      <main className="flex-1 px-4 py-6 overflow-y-auto pb-40">
+      <main className="flex-1 px-4 py-6 overflow-y-auto pb-48">
         <div className="space-y-4">
           {messages.map((message) => (
             <div
@@ -136,8 +136,31 @@ export function AIAssistant({ onNavigate }: AIAssistantProps) {
         )}
       </main>
 
-      {/* TOP-LEVEL: Bottom Navigation Bar (just above input) */}
-      <nav className="fixed bottom-20 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3 z-10">
+      {/* Input Bar (above bottom nav) */}
+      <div className="fixed bottom-16 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4 z-20">
+        <div className="max-w-md mx-auto flex gap-2">
+          <Input
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSend(inputText);
+              }
+            }}
+            placeholder="Ask me anything about heritage..."
+            className="flex-1 bg-[#FFFBEA] border-gray-300 rounded-full font-['Inter']"
+          />
+          <Button
+            onClick={() => handleSend(inputText)}
+            className="bg-[#0A402F] hover:bg-[#0A402F]/90 text-[#FFFBEA] rounded-full w-12 h-12 p-0"
+          >
+            <Send size={20} />
+          </Button>
+        </div>
+      </div>
+
+      {/* TOP-LEVEL: Bottom Navigation Bar (at very bottom) */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3 z-10">
         <div className="flex justify-between items-center max-w-md mx-auto">
           <button 
             onClick={() => onNavigate('home')}
@@ -172,29 +195,6 @@ export function AIAssistant({ onNavigate }: AIAssistantProps) {
           </button>
         </div>
       </nav>
-
-      {/* Input Bar (at very bottom) */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4 z-20">
-        <div className="max-w-md mx-auto flex gap-2">
-          <Input
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                handleSend(inputText);
-              }
-            }}
-            placeholder="Ask me anything about heritage..."
-            className="flex-1 bg-[#FFFBEA] border-gray-300 rounded-full font-['Inter']"
-          />
-          <Button
-            onClick={() => handleSend(inputText)}
-            className="bg-[#0A402F] hover:bg-[#0A402F]/90 text-[#FFFBEA] rounded-full w-12 h-12 p-0"
-          >
-            <Send size={20} />
-          </Button>
-        </div>
-      </div>
     </div>
   );
 }

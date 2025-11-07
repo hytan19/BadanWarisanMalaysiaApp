@@ -8,7 +8,7 @@ interface ProfileScreenProps {
 const menuItems = [
   { id: 'donations', icon: History, label: 'Donation History', screen: 'donation-history' },
   { id: 'membership', icon: CreditCard, label: 'My Membership Card', screen: 'membership' },
-  { id: 'edit-profile', icon: UserIcon, label: 'Edit Profile', screen: 'settings' },
+  { id: 'edit-profile', icon: UserIcon, label: 'Edit Profile', screen: 'edit-profile' },
   { id: 'settings', icon: Settings, label: 'Settings', screen: 'settings' },
 ];
 

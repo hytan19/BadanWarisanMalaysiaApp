@@ -1,4 +1,4 @@
-import { ArrowLeft, ChevronRight, Bell as BellIcon, Globe, CreditCard as CardIcon, HelpCircle, Shield } from 'lucide-react';
+import { ArrowLeft, ChevronRight, Bell as BellIcon, Globe, Shield } from 'lucide-react';
 import { Switch } from './ui/switch';
 
 interface SettingsScreenProps {
@@ -32,30 +32,12 @@ export function SettingsScreen({ onNavigate }: SettingsScreenProps) {
           <button className="w-full flex items-center justify-between p-4 border-b border-gray-200 hover:bg-[#0A402F]/5 transition-colors">
             <div className="flex items-center gap-3">
               <Globe className="text-[#0A402F]" size={20} />
-              <div className="text-left">
-                <p className="text-[#333333] font-['Inter']">Language</p>
-                <p className="text-[#333333] opacity-70 text-sm font-['Inter']">English</p>
-              </div>
+              <span className="text-[#333333] font-['Inter']">Language</span>
             </div>
-            <ChevronRight className="text-[#333333] opacity-50" size={20} />
-          </button>
-
-          {/* Manage Payment Methods */}
-          <button className="w-full flex items-center justify-between p-4 border-b border-gray-200 hover:bg-[#0A402F]/5 transition-colors">
-            <div className="flex items-center gap-3">
-              <CardIcon className="text-[#0A402F]" size={20} />
-              <span className="text-[#333333] font-['Inter']">Manage Payment Methods</span>
+            <div className="flex items-center gap-2">
+              <span className="text-[#333333] opacity-70 font-['Inter']">English</span>
+              <ChevronRight className="text-[#333333] opacity-50" size={20} />
             </div>
-            <ChevronRight className="text-[#333333] opacity-50" size={20} />
-          </button>
-
-          {/* Help & Support */}
-          <button className="w-full flex items-center justify-between p-4 border-b border-gray-200 hover:bg-[#0A402F]/5 transition-colors">
-            <div className="flex items-center gap-3">
-              <HelpCircle className="text-[#0A402F]" size={20} />
-              <span className="text-[#333333] font-['Inter']">Help & Support</span>
-            </div>
-            <ChevronRight className="text-[#333333] opacity-50" size={20} />
           </button>
 
           {/* Privacy Policy */}

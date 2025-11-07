@@ -8,6 +8,7 @@ import { DonateScreen } from './components/DonateScreen';
 import { LeaderboardScreen } from './components/LeaderboardScreen';
 import { ProfileScreen } from './components/ProfileScreen';
 import { DonationHistory } from './components/DonationHistory';
+import { EditProfileScreen } from './components/EditProfileScreen';
 import { SettingsScreen } from './components/SettingsScreen';
 import { AIAssistant } from './components/AIAssistant';
 import { HeritagePassport } from './components/HeritagePassport';
@@ -24,6 +25,7 @@ type Screen =
   | 'profile'
   | 'leaderboard'
   | 'donation-history'
+  | 'edit-profile'
   | 'ai-assistant'
   | 'heritage-passport'
   | 'my-events'
@@ -96,6 +98,10 @@ export default function App() {
       {/* Placeholder screens for donate and settings */}
       {currentScreen === 'donate' && (
         <DonateScreen onNavigate={handleNavigate} />
+      )}
+
+      {currentScreen === 'edit-profile' && (
+        <EditProfileScreen onNavigate={handleNavigate} />
       )}
 
       {currentScreen === 'settings' && (

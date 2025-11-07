@@ -1,4 +1,4 @@
-import { ArrowLeft, Calendar, MapPin } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, Home, DollarSign, User } from 'lucide-react';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
@@ -27,7 +27,7 @@ export function EventDetails({ onNavigate }: EventDetailsProps) {
       </div>
 
       {/* Content */}
-      <main className="flex-1 px-4 py-6 overflow-y-auto pb-24">
+      <main className="flex-1 px-4 py-6 overflow-y-auto pb-32">
         {/* Event Title */}
         <h2 className="text-[#333333] font-['Lora'] mb-4">Heritage Walk: Kuala Lumpur</h2>
         
@@ -77,8 +77,45 @@ export function EventDetails({ onNavigate }: EventDetailsProps) {
         </div>
       </main>
 
-      {/* Sticky Bottom Button */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4">
+      {/* Bottom Navigation Bar */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3">
+        <div className="flex justify-between items-center max-w-md mx-auto">
+          <button 
+            onClick={() => onNavigate('home')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <Home size={24} />
+            <span className="text-xs font-['Inter']">Home</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('donate')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <DollarSign size={24} />
+            <span className="text-xs font-['Inter']">Donate</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('events')}
+            className="flex flex-col items-center gap-1 text-[#0A402F]"
+          >
+            <Calendar size={24} />
+            <span className="text-xs font-['Inter']">Events</span>
+          </button>
+          
+          <button 
+            onClick={() => onNavigate('profile')}
+            className="flex flex-col items-center gap-1 text-gray-400"
+          >
+            <User size={24} />
+            <span className="text-xs font-['Inter']">Profile</span>
+          </button>
+        </div>
+      </nav>
+
+      {/* Sticky Bottom Button (above nav) */}
+      <div className="fixed bottom-16 left-0 right-0 bg-white border-t border-gray-200 px-4 py-4">
         <div className="max-w-md mx-auto">
           <Button className="w-full bg-[#0A402F] hover:bg-[#0A402F]/90 text-[#FFFBEA] h-12 rounded-xl font-['Inter']">
             Book Now - RM20
